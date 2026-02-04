@@ -1,3 +1,28 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Print styles for presentations */
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  * {
+    overflow: visible !important;
+  }
+}
+
+/* Ensure slides don't scroll */
+html, body, #root {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}

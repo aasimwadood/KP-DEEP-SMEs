@@ -72,7 +72,7 @@ export default function App() {
     <div className="w-screen h-screen bg-gray-900 flex flex-col overflow-hidden">
       {/* Main Slide Area */}
       <div className="flex-1 relative bg-white overflow-hidden">
-        <div className="w-full h-full" ref={slideRef}>
+        <div className="w-full h-full overflow-hidden" ref={slideRef}>
           <CurrentSlideComponent />
         </div>
 

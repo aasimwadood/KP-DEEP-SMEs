@@ -4,18 +4,18 @@ export function Slide2ProblemStatement() {
   const problemImage = "https://images.unsplash.com/photo-1693045181676-57199422ee66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMGxlZGdlciUyMGFjY291bnRpbmclMjBtYW51YWx8ZW58MXx8fHwxNzY5OTYxNzA1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
   return (
-    <div className="w-full h-full bg-white p-12 flex flex-col">
+    <div className="w-full h-full bg-white p-12 flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <h2 className="text-5xl font-bold text-[#0033A0] mb-2">The Digital Vacuum</h2>
         <div className="h-1 w-32 bg-[#00A86B]"></div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex gap-8">
+      <div className="flex-1 flex gap-8 min-h-0">
         {/* Left Side - Visual Collage */}
-        <div className="flex-1 flex flex-col gap-4">
-          <div className="flex-1 rounded-xl overflow-hidden shadow-2xl border-4 border-red-500 relative">
+        <div className="flex-1 flex flex-col gap-4 min-h-0">
+          <div className="flex-1 rounded-xl overflow-hidden shadow-2xl border-4 border-red-500 relative min-h-0">
             <img 
               src={problemImage} 
               alt="Manual paper ledger" 
@@ -77,8 +77,8 @@ export function Slide2ProblemStatement() {
       </div>
 
       {/* Bottom Callout */}
-      <div className="mt-8 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl p-8 text-center shadow-xl">
-        <p className="text-4xl font-bold">200,000+ SMEs in Digital Darkness</p>
+      <div className="mt-6 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl p-6 text-center shadow-xl">
+        <p className="text-3xl font-bold">200,000+ SMEs in Digital Darkness</p>
       </div>
     </div>
   );

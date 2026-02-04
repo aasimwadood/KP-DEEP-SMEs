@@ -4,21 +4,21 @@ export function Slide5MobileAppDemo() {
   const mobileImage = "https://images.unsplash.com/photo-1599202889720-cd3c0833efa1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBwaG9uZSUyMG1vY2t1cCUyMGJ1c2luZXNzfGVufDF8fHx8MTc2OTk2MTcwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-blue-50 to-white p-12 flex flex-col">
+    <div className="w-full h-full bg-gradient-to-br from-blue-50 to-white p-12 flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-5xl font-bold text-[#0033A0] mb-2">KP-DEEP Business Mobile App</h2>
+      <div className="mb-6">
+        <h2 className="text-4xl font-bold text-[#0033A0] mb-2">KP-DEEP Business Mobile App</h2>
         <div className="h-1 w-32 bg-[#00A86B]"></div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex gap-8">
+      <div className="flex-1 flex gap-8 min-h-0">
         {/* Phone Mockup */}
         <div className="flex items-center justify-center">
           <div className="relative">
             {/* Phone Frame */}
-            <div className="w-80 h-[600px] bg-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800">
-              <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+            <div className="w-72 h-[540px] bg-gray-900 rounded-[2.5rem] p-2 shadow-2xl border-8 border-gray-800">
+              <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden">
                 {/* Status Bar */}
                 <div className="bg-[#0033A0] text-white px-6 py-3 flex justify-between items-center">
                   <span className="text-sm font-semibold">9:41</span>

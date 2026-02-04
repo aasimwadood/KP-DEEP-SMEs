@@ -37,15 +37,15 @@ export function Slide7ImplementationRoadmap() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-blue-50 p-12 flex flex-col">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-blue-50 p-12 flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-5xl font-bold text-[#0033A0] mb-2">Implementation Roadmap</h2>
+      <div className="mb-6 z-10">
+        <h2 className="text-4xl font-bold text-[#0033A0] mb-2">12-Month Implementation Roadmap</h2>
         <div className="h-1 w-32 bg-[#00A86B]"></div>
       </div>
 
-      {/* Timeline Visualization */}
-      <div className="flex-1 flex flex-col">
+      {/* Timeline - Horizontal */}
+      <div className="flex-1 flex flex-col min-h-0 relative z-10">
         {/* Gantt-style Timeline */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="mb-6">

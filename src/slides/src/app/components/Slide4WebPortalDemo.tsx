@@ -4,58 +4,58 @@ export function Slide4WebPortalDemo() {
   const dashboardImage = "https://images.unsplash.com/photo-1748609160056-7b95f30041f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MXx8fHwxNzY5ODk5NDA5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
   return (
-    <div className="w-full h-full bg-white p-12 flex flex-col">
+    <div className="w-full h-full bg-white p-12 flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-5xl font-bold text-[#0033A0] mb-2">Web Portal: Public Landing Page</h2>
+      <div className="mb-6">
+        <h2 className="text-4xl font-bold text-[#0033A0] mb-2">Web Portal: Public Landing Page</h2>
         <div className="h-1 w-32 bg-[#00A86B]"></div>
       </div>
 
       {/* Main Portal Screenshot */}
-      <div className="flex-1 flex gap-8">
-        <div className="flex-1 flex flex-col">
-          <div className="flex-1 rounded-xl overflow-hidden shadow-2xl border-4 border-[#0033A0] relative">
+      <div className="flex-1 flex gap-6 min-h-0">
+        <div className="flex-1 flex flex-col min-h-0">
+          <div className="flex-1 rounded-xl overflow-hidden shadow-2xl border-4 border-[#0033A0] relative min-h-0">
             {/* Mock Portal Interface */}
-            <div className="w-full h-full bg-gradient-to-br from-blue-50 to-white p-8">
+            <div className="w-full h-full bg-gradient-to-br from-blue-50 to-white p-6 overflow-hidden">
               {/* Top Bar */}
-              <div className="bg-[#0033A0] text-white p-4 rounded-lg mb-6 flex items-center justify-between">
+              <div className="bg-[#0033A0] text-white p-3 rounded-lg mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center font-bold text-sm">
                     KP
                   </div>
-                  <span className="text-xl font-bold">KP-DEEP Portal</span>
+                  <span className="text-lg font-bold">KP-DEEP Portal</span>
                 </div>
-                <div className="flex gap-4">
-                  <button className="px-4 py-2 bg-white/20 rounded">Apply Now</button>
-                  <button className="px-4 py-2 bg-white/20 rounded">Login</button>
+                <div className="flex gap-3">
+                  <button className="px-3 py-1 bg-white/20 rounded text-sm">Apply Now</button>
+                  <button className="px-3 py-1 bg-white/20 rounded text-sm">Login</button>
                 </div>
               </div>
 
               {/* Hero Section */}
-              <div className="bg-white rounded-lg p-6 mb-4 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">Welcome to KP-DEEP</h3>
-                <p className="text-gray-600 mb-4">Transform your business with digital tools and government grants</p>
-                <div className="flex gap-4">
-                  <button className="px-6 py-3 bg-[#00A86B] text-white rounded-lg font-semibold">
+              <div className="bg-white rounded-lg p-4 mb-3 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Welcome to KP-DEEP</h3>
+                <p className="text-gray-600 mb-3 text-sm">Transform your business with digital tools and government grants</p>
+                <div className="flex gap-3">
+                  <button className="px-4 py-2 bg-[#00A86B] text-white rounded-lg font-semibold text-sm">
                     Check Eligibility
                   </button>
-                  <button className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold">
+                  <button className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold text-sm">
                     Browse Marketplace
                   </button>
                 </div>
               </div>
 
               {/* Features Grid */}
-              <div className="grid grid-cols-3 gap-3">
-                <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <CheckCircle className="w-8 h-8 text-[#0033A0] mb-2" />
                   <p className="font-semibold text-sm">Eligibility Checker</p>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg">
+                <div className="bg-green-50 p-3 rounded-lg">
                   <ShoppingCart className="w-8 h-8 text-[#00A86B] mb-2" />
                   <p className="font-semibold text-sm">Vendor Marketplace</p>
                 </div>
-                <div className="bg-yellow-50 p-4 rounded-lg">
+                <div className="bg-yellow-50 p-3 rounded-lg">
                   <Star className="w-8 h-8 text-yellow-600 mb-2" />
                   <p className="font-semibold text-sm">Success Stories</p>
                 </div>
