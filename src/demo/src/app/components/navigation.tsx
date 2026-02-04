@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { Menu, X, Globe } from 'lucide-react';
 
-export function Navigation() {
+interface NavigationProps {
+  onNavigate: (page: string) => void;
+}
+
+export function Navigation({ onNavigate }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'en' | 'ur'>('en');
 
@@ -35,9 +39,12 @@ export function Navigation() {
             <a href="#success" className="text-gray-700 hover:text-blue-600 font-medium">
               Success Stories
             </a>
-            <a href="#support" className="text-gray-700 hover:text-blue-600 font-medium">
+            <button 
+              onClick={() => onNavigate('training')}
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
               Support
-            </a>
+            </button>
             
             <Button
               variant="ghost"
@@ -49,7 +56,10 @@ export function Navigation() {
               {language === 'en' ? 'اردو' : 'English'}
             </Button>
 
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button 
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={() => onNavigate('dashboard')}
+            >
               Sign In
             </Button>
           </div>
@@ -80,9 +90,12 @@ export function Navigation() {
               <a href="#success" className="text-gray-700 hover:text-blue-600 font-medium py-2">
                 Success Stories
               </a>
-              <a href="#support" className="text-gray-700 hover:text-blue-600 font-medium py-2">
+              <button 
+                onClick={() => onNavigate('training')}
+                className="text-gray-700 hover:text-blue-600 font-medium py-2 text-left"
+              >
                 Support
-              </a>
+              </button>
               
               <Button
                 variant="outline"
@@ -94,7 +107,10 @@ export function Navigation() {
                 {language === 'en' ? 'اردو' : 'English'}
               </Button>
 
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full">
+              <Button 
+                className="bg-blue-600 hover:bg-blue-700 text-white w-full"
+                onClick={() => onNavigate('dashboard')}
+              >
                 Sign In
               </Button>
             </div>

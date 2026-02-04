@@ -1,6 +1,10 @@
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate: (page: string) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto max-w-6xl px-4 py-12">
@@ -21,29 +25,44 @@ export function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#about" className="hover:text-white transition-colors">
+                <a href="#benefits" className="hover:text-white transition-colors">
                   About Program
                 </a>
               </li>
               <li>
-                <a href="#eligibility" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => {
+                    const element = document.getElementById('eligibility');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Check Eligibility
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#apply" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onNavigate('dashboard')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Apply Now
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#vendors" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onNavigate('marketplace')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Software Vendors
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#training" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onNavigate('training')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Training & Support
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -53,19 +72,28 @@ export function Footer() {
             <h3 className="text-white font-bold text-lg mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#faq" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onNavigate('training')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   FAQs
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#guides" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onNavigate('training')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   User Guides
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#videos" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onNavigate('training')}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Video Tutorials
-                </a>
+                </button>
               </li>
               <li>
                 <a href="#terms" className="hover:text-white transition-colors">

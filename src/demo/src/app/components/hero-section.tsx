@@ -1,7 +1,11 @@
 import { Button } from '@/app/components/ui/button';
 import { PlayCircle } from 'lucide-react';
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onNavigate: (page: string) => void;
+}
+
+export function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
     <section className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -32,6 +36,10 @@ export function HeroSection() {
               <Button 
                 size="lg" 
                 className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8"
+                onClick={() => {
+                  const element = document.getElementById('eligibility');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Check Your Eligibility
               </Button>
@@ -39,6 +47,7 @@ export function HeroSection() {
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8"
+                onClick={() => onNavigate('training')}
               >
                 <PlayCircle className="mr-2 h-5 w-5" />
                 Watch Demo Video

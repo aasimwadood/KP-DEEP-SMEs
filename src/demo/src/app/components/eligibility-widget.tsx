@@ -1,41 +1,42 @@
 import { useState } from 'react';
 import { Card } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
-import { Slider } from '@/app/components/ui/slider';
-import { CheckCircle2, AlertCircle } from 'lucide-react';
-
-const businessTypes = [
-  { value: 'manufacturing', label: 'Manufacturing / مینوفیکچرنگ' },
-  { value: 'retail', label: 'Retail / خوردہ' },
-  { value: 'services', label: 'Services / خدمات' },
-];
-
-const kpDistricts = [
-  { value: 'peshawar', label: 'Peshawar / پشاور' },
-  { value: 'mardan', label: 'Mardan / مردان' },
-  { value: 'abbottabad', label: 'Abbottabad / ایبٹ آباد' },
-  { value: 'swat', label: 'Swat / سوات' },
-  { value: 'dera-ismail-khan', label: 'Dera Ismail Khan / ڈیرہ اسماعیل خان' },
-  { value: 'kohat', label: 'Kohat / کوہاٹ' },
-  { value: 'bannu', label: 'Bannu / بنوں' },
-  { value: 'other', label: 'Other District / دیگر اضلاع' },
-];
+import { Label } from '@/app/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/app/components/ui/radio-group';
+import { CheckCircle2, XCircle } from 'lucide-react';
 
 export function EligibilityWidget() {
-  const [businessType, setBusinessType] = useState<string>('');
-  const [location, setLocation] = useState<string>('');
-  const [turnover, setTurnover] = useState<number[]>([500000]);
-  const [showResult, setShowResult] = useState(false);
+  const [step, setStep] = useState(1);
+  const [answers, setAnswers] = useState({
+    location: '',
+    employees: '',
+    registered: '',
+    revenue: '',
+  });
+  const [result, setResult] = useState<'eligible' | 'ineligible' | null>(null);
 
-  const handleCheckEligibility = () => {
-    setShowResult(true);
+  const handleAnswer = (key: string, value: string) => {
+    setAnswers({ ...answers, [key]: value });
   };
 
-  const isEligible = businessType && location && turnover[0] >= 100000;
+  const checkEligibility = () => {
+    const isEligible =
+      answers.location === 'kp' &&
+      (answers.employees === '1-50' || answers.employees === '51-250') &&
+      answers.registered === 'yes' &&
+      (answers.revenue === 'below-10' || answers.revenue === '10-50');
+
+    setResult(isEligible ? 'eligible' : 'ineligible');
+  };
+
+  const resetWidget = () => {
+    setStep(1);
+    setAnswers({ location: '', employees: '', registered: '', revenue: '' });
+    setResult(null);
+  };
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section id="eligibility" className="py-16 px-4 bg-white">
       <div className="container mx-auto max-w-4xl">
         <Card className="p-8 shadow-xl border-2 border-blue-100">
           {/* Header */}
@@ -53,92 +54,156 @@ export function EligibilityWidget() {
 
           {/* Questions */}
           <div className="space-y-6">
-            {/* Question 1: Business Type */}
+            {/* Question 1: Location */}
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                1. What type of business do you operate? / آپ کس قسم کا کاروبار چلاتے ہیں؟
-              </label>
-              <Select value={businessType} onValueChange={setBusinessType}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select business type / کاروبار کی قسم منتخب کریں" />
-                </SelectTrigger>
-                <SelectContent>
-                  {businessTypes.map((type) => (
-                    <SelectItem key={type.value} value={type.value}>
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Question 2: Location */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                2. Where is your business located? / آپ کا کاروبار کہاں واقع ہے؟
-              </label>
-              <Select value={location} onValueChange={setLocation}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select district / ضلع منتخب کریں" />
-                </SelectTrigger>
-                <SelectContent>
-                  {kpDistricts.map((district) => (
-                    <SelectItem key={district.value} value={district.value}>
-                      {district.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Question 3: Annual Turnover */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                3. What is your approximate annual turnover? / آپ کا تقریباً سالانہ کاروبار کتنا ہے؟
-              </label>
-              <div className="pt-4 pb-2">
-                <Slider
-                  value={turnover}
-                  onValueChange={setTurnover}
-                  min={0}
-                  max={10000000}
-                  step={100000}
-                  className="w-full"
-                />
-                <div className="flex justify-between mt-3">
-                  <span className="text-sm text-gray-600">PKR 0</span>
-                  <span className="text-lg font-semibold text-blue-600">
-                    PKR {turnover[0].toLocaleString()}
-                  </span>
-                  <span className="text-sm text-gray-600">PKR 10M+</span>
+              <Label className="block text-sm font-semibold text-gray-700 mb-2">
+                1. Where is your business located? / آپ کا کاروبار کہاں واقع ہے؟
+              </Label>
+              <RadioGroup
+                value={answers.location}
+                onValueChange={(value) => handleAnswer('location', value)}
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="kp" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    KP / کیپ
+                  </Label>
                 </div>
-              </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="other" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    Other / دیگر
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            {/* Question 2: Number of Employees */}
+            <div>
+              <Label className="block text-sm font-semibold text-gray-700 mb-2">
+                2. How many employees do you have? / آپ کے کامگر کتنا ہے؟
+              </Label>
+              <RadioGroup
+                value={answers.employees}
+                onValueChange={(value) => handleAnswer('employees', value)}
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="1-50" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    1-50
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="51-250" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    51-250
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="251-500" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    251-500
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="501-1000" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    501-1000
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="1001+" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    1001+
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            {/* Question 3: Registered */}
+            <div>
+              <Label className="block text-sm font-semibold text-gray-700 mb-2">
+                3. Is your business registered? / آپ کا کاروبار رجسٹرڈ ہے؟
+              </Label>
+              <RadioGroup
+                value={answers.registered}
+                onValueChange={(value) => handleAnswer('registered', value)}
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="yes" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    Yes / جی ہاں
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="no" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    No / نہیں
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            {/* Question 4: Annual Revenue */}
+            <div>
+              <Label className="block text-sm font-semibold text-gray-700 mb-2">
+                4. What is your approximate annual revenue? / آپ کا تقریباً سالانہ آمدانی چیت کتنی ہے؟
+              </Label>
+              <RadioGroup
+                value={answers.revenue}
+                onValueChange={(value) => handleAnswer('revenue', value)}
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="below-10" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    Below PKR 10M / PKR 10M سے نیچے
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="10-50" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    PKR 10M - PKR 50M / PKR 10M - PKR 50M
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="50-100" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    PKR 50M - PKR 100M / PKR 50M - PKR 100M
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="100+" />
+                  <Label className="text-sm font-medium text-gray-900">
+                    PKR 100M+ / PKR 100M+
+                  </Label>
+                </div>
+              </RadioGroup>
             </div>
 
             {/* Check Button */}
-            <Button 
-              onClick={handleCheckEligibility}
+            <Button
+              onClick={checkEligibility}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 text-lg"
-              disabled={!businessType || !location}
+              disabled={!answers.location || !answers.employees || !answers.registered || !answers.revenue}
             >
               Check Eligibility Now / ابھی اہلیت چیک کریں
             </Button>
 
             {/* Result */}
-            {showResult && (
+            {result && (
               <div
                 className={`p-6 rounded-lg ${
-                  isEligible ? 'bg-green-50 border-2 border-green-200' : 'bg-orange-50 border-2 border-orange-200'
+                  result === 'eligible' ? 'bg-green-50 border-2 border-green-200' : 'bg-orange-50 border-2 border-orange-200'
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  {isEligible ? (
+                  {result === 'eligible' ? (
                     <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
                   ) : (
-                    <AlertCircle className="w-6 h-6 text-orange-600 flex-shrink-0 mt-1" />
+                    <XCircle className="w-6 h-6 text-orange-600 flex-shrink-0 mt-1" />
                   )}
                   <div className="flex-1">
-                    {isEligible ? (
+                    {result === 'eligible' ? (
                       <>
                         <h3 className="font-bold text-green-900 text-lg mb-2">
                           Congratulations! You're Eligible

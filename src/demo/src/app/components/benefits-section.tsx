@@ -1,54 +1,40 @@
 import { Card } from '@/app/components/ui/card';
-import { CreditCard, FileText, Package, TrendingUp, Users, Shield } from 'lucide-react';
-
-const benefits = [
-  {
-    icon: CreditCard,
-    title: 'Access to Credit',
-    titleUrdu: 'قرضے تک رسائی',
-    description: 'Get approved for business loans faster with your digital records and credit score',
-    descriptionUrdu: 'اپنے ڈیجیٹل ریکارڈ اور کریڈٹ سکور کے ساتھ تیزی سے قرضے حاصل کریں',
-  },
-  {
-    icon: FileText,
-    title: 'Tax Compliance Made Easy',
-    titleUrdu: 'ٹیکس کی آسانی',
-    description: 'Automatically generate tax-ready invoices and reports for FBR and KPRA',
-    descriptionUrdu: 'ایف بی آر اور کے پی آر اے کے لیے خودکار طریقے سے رپورٹس بنائیں',
-  },
-  {
-    icon: Package,
-    title: 'Smart Inventory Management',
-    titleUrdu: 'ذہین اسٹاک مینجمنٹ',
-    description: 'Track stock levels, get low-stock alerts, and manage suppliers efficiently',
-    descriptionUrdu: 'اسٹاک کی سطح کو ٹریک کریں، کم اسٹاک الرٹ حاصل کریں',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Business Growth Insights',
-    titleUrdu: 'کاروباری ترقی کی معلومات',
-    description: 'Understand your sales trends, profit margins, and growth opportunities',
-    descriptionUrdu: 'اپنی فروخت کے رجحانات، منافع اور ترقی کے مواقع سمجھیں',
-  },
-  {
-    icon: Users,
-    title: 'Customer Management',
-    titleUrdu: 'گاہک مینجمنٹ',
-    description: 'Digital khata for tracking receivables and sending payment reminders',
-    descriptionUrdu: 'وصولیوں کو ٹریک کرنے اور ادائیگی کی یاد دہانی بھیجنے کے لیے ڈیجیٹل کھاتہ',
-  },
-  {
-    icon: Shield,
-    title: 'Data Security & Privacy',
-    titleUrdu: 'ڈیٹا سیکیورٹی اور رازداری',
-    description: 'Your business data is encrypted and protected with bank-level security',
-    descriptionUrdu: 'آپ کا کاروباری ڈیٹا محفوظ اور بینک جیسی سیکیورٹی سے محفوظ ہے',
-  },
-];
+import { ShieldCheck, CreditCard, TrendingUp, HeadphonesIcon } from 'lucide-react';
 
 export function BenefitsSection() {
+  const benefits = [
+    {
+      icon: ShieldCheck,
+      title: 'Free Digital Tools',
+      titleUrdu: 'مفت ڈیجیٹل ٹولز',
+      description: 'Get subsidized accounting, inventory, and POS software worth up to PKR 50,000',
+      descriptionUrdu: 'PKR 50,000 تک کی مالیت کے اکاؤنٹنگ، انوینٹری، اور POS سافٹ ویئر حاصل کریں',
+    },
+    {
+      icon: CreditCard,
+      title: 'Easy Financing Access',
+      titleUrdu: 'آسان فنانسنگ تک رسائی',
+      description: 'Digital records make you eligible for bank loans up to PKR 2 million',
+      descriptionUrdu: 'ڈیجیٹل ریکارڈ آپ کو PKR 2 ملین تک کے بینک قرضوں کے اہل بناتے ہیں',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Business Growth',
+      titleUrdu: 'کاروباری ترقی',
+      description: 'Digital SMEs see 40% average revenue increase within 12 months',
+      descriptionUrdu: 'ڈیجیٹل SMEs 12 ماہ میں اوسطاً 40٪ آمدنی میں اضافہ دیکھتے ہیں',
+    },
+    {
+      icon: HeadphonesIcon,
+      title: 'Free Training & Support',
+      titleUrdu: 'مفت تربیت اور مدد',
+      description: 'Personal consultant and 24/7 helpline in Urdu, Pashto, and English',
+      descriptionUrdu: 'اردو، پشتو اور انگریزی میں ذاتی مشیر اور 24/7 ہیلپ لائن',
+    },
+  ];
+
   return (
-    <section className="py-16 px-4 bg-gray-50">
+    <section id="benefits" className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
